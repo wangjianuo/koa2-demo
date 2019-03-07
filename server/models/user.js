@@ -18,6 +18,20 @@ class UserModel {
         return await User.findAll()
     }
 
+    static async findAllAndCount(count, offset) {
+        console.log('count, offset=', count, offset)
+        const list = await User.findAndCountAll({
+            limit: parseInt(count),
+            offset,
+            where: {},
+            order: [
+                ['userId', 'DESC'],
+            ],
+            // distinct: true,
+        })
+        return list
+    }
+
     // static async createUser(user) {
     //     await User.create({
     //         'user_name': user.user_name,
