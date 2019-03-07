@@ -7,6 +7,7 @@ const router = new Router({
 
 router
     .post('/login', UserController.postLogin)
+    .get('/user/list', UserController.getList)
 
 
 

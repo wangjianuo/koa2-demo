@@ -14,6 +14,10 @@ class UserModel {
         return userInfo
     }
 
+    static async getList() {
+        return await User.findAll()
+    }
+
     // static async createUser(user) {
     //     await User.create({
     //         'user_name': user.user_name,

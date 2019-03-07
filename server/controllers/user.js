@@ -21,6 +21,15 @@ class userController {
             }
         }
     }
+
+    static async getList(ctx) {
+        const list = await userModel.getList()
+        ctx.body = {
+            msg: '成功',
+            data: { list },
+            code: 200
+        }
+    }
 }
 
 
