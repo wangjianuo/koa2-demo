@@ -23,6 +23,16 @@ module.exports = function (sequelize, DataTypes) {
                 field: 'user_del_flag',
                 type: DataTypes.INTEGER(10),
                 allowNull: false
+            },
+            createTime: {
+                field: 'create_time',
+                type: DataTypes.DATEONLY(),
+                allowNull: false
+            },
+            updateTime: {
+                field: 'update_time',
+                type: DataTypes.DATEONLY(10),
+                allowNull: false
             }
         }, {
             tableName: 'tbl_user'

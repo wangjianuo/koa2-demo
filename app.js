@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser')
 const router = require('./server/routes/index')
 const port = 9991
 const app = new Koa()
+const utils = require('./server/utils/index')
 
 app.use(logger())
 app.use(bodyParser())

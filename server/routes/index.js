@@ -1,15 +1,19 @@
 const Router = require('koa-router')
-const UserController = require('../controllers/user')
+const UserController = require('../controller/user')
 
 const router = new Router({
     prefix: '/api'
 })
 
 router
-    .post('/login', UserController.postLogin)
     .get('/user/list', UserController.getList)
-    .post('/user/list', UserController.postList)
-
+    .get('/user/listPage', UserController.getListPage)
+    .get('/user/:userName', UserController.getUser)
+    .get('/user/list/:userName', UserController.getListLikeName)
+    .post('/user/save', UserController.saveUser)
+    .put('/user/update', UserController.updateUser)
+    .delete('/user/:userName', UserController.deleteUser)
+    .post('/login', UserController.postLogin)
 
 
 module.exports = router
