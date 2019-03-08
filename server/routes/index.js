@@ -13,7 +13,7 @@ router
     .post('/user/save', UserController.saveUser)
     .put('/user/update', UserController.updateUser)
     .delete('/user/:userName', UserController.deleteUser)
-    .post('/login', UserController.postLogin)
+    .post('/login', UserController.login)
 
 
 module.exports = router

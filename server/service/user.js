@@ -1,7 +1,9 @@
 const db = require('../config/db')
 const sequelize = db.sequelize
 const User = sequelize.import('../model/user.js')
-var moment = require('moment');
+const moment = require('moment')
+const utils = require('../utils/index')
+
 
 class UserService {
 
@@ -61,9 +63,10 @@ class UserService {
     }
 
     static async saveUser(reqParam) {
+        const hashUserPwd = utils.encryption(reqParam.userPwd)
         await User.create({
             'userName': reqParam.userName,
-            'userPwd': reqParam.userPwd,
+            'userPwd': hashUserPwd,
             'userDelFlag': 0,
             'createTime': moment(),
             'updateTime': moment()

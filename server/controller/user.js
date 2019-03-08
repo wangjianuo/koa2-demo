@@ -1,4 +1,5 @@
 const userService = require('../service/user')
+const utils = require('../utils/index')
 
 class userController {
 
@@ -98,22 +99,33 @@ class userController {
         }
     }
 
-
-    static async postLogin(ctx) {
-        console.log('postLogin---', ctx)
-        const data = ctx.request.body
-        const user = await userService.findUserByName(data.userName)
-        if (user) {
-            ctx.body = {
-                msg: '成功',
-                data: { name: data.name },
-                code: 200
-            }
-        } else {
+    static async login(ctx) {
+        const reqParam = ctx.request.body
+        const user = await userService.getUser(reqParam.userName)
+        console.log('user==', user)
+        if (!user) {
+            console.log('用户名不存在')
             ctx.body = {
                 msg: '用户名不存在',
                 data: null,
-                code: 301
+                code: 400
+            }
+            return
+        } else if (!utils.compareSync(reqParam.userPwd, user.userPwd)) {
+            console.log('密码错误')
+            ctx.body = {
+                msg: '密码错误',
+                data: null,
+                code: 400
+            }
+            return
+        } else {
+            const token = utils.createToken({ userName: user.userName })
+            console.log('token')
+            ctx.body = {
+                msg: '成功',
+                data: { token, user },
+                code: 200
             }
         }
     }
