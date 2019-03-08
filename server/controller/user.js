@@ -120,7 +120,10 @@ class userController {
             }
             return
         } else {
-            const token = utils.createToken({ userName: user.userName })
+            const token = utils.createToken({
+                userId: user.userId,
+                userName: user.userName
+            })
             console.log('token')
             ctx.body = {
                 msg: '成功',

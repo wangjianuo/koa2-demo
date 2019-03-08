@@ -2,12 +2,18 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const bodyParser = require('koa-bodyparser')
 const router = require('./server/routes/index')
+const jwt = require('koa-jwt')
+const secret = require('./server/config/secret.json')
+const filter = require('./server/filter/index')
 const port = 9991
 const app = new Koa()
-const utils = require('./server/utils/index')
 
+
+
+app.use(filter())
 app.use(logger())
 app.use(bodyParser())
+app.use(jwt({ secret: secret.sign }).unless({ path: [/^\/api\/login/] }))
 
 app
     .use(router.routes())
