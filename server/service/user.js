@@ -38,7 +38,7 @@ class UserService {
             order: [
                 ['userId', 'DESC'],
             ],
-            attributes: ['user_id', 'user_name', 'user_pwd', 'user_del_flag', 'create_time', 'update_time']
+            attributes: ['userId', 'userName', 'userPwd', 'userDelFlag', 'createTime', 'updateTime']
             // distinct: true,
         })
         return list

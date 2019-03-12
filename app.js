@@ -5,15 +5,15 @@ const router = require('./server/routes/index')
 const jwt = require('koa-jwt')
 const secret = require('./server/config/secret.json')
 const filter = require('./server/filter/index')
-const port = 9991
+const port = 9999
 const app = new Koa()
 
 
 
-app.use(filter())
+// app.use(filter())
 app.use(logger())
 app.use(bodyParser())
-app.use(jwt({ secret: secret.sign }).unless({ path: [/^\/api\/login/] }))
+// app.use(jwt({ secret: secret.sign }).unless({ path: [/^\/api\/login/] }))
 
 app
     .use(router.routes())
